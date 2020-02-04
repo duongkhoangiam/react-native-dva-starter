@@ -33,8 +33,12 @@ export default {
     },
   },
   subscriptions: {
-    setup({ dispatch }) {
+    setup({ history, dispatch }) {
+      console.log('history', history)
       dispatch({ type: 'loadStorage' })
+      // return history.listen(({pathname}) => {
+      //   console.log('pathname', pathname);
+      // })
     },
   },
 }

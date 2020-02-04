@@ -16,10 +16,18 @@ class Detail extends Component {
     this.props.dispatch(NavigationActions.back({ routeName: 'Account' }))
   }
 
+  loadProduct = async () => {
+    const result = await this.props.dispatch({
+      type: 'product/fetch'
+    });
+    console.log('result', result);
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Button text="Go Back" onPress={this.goBack} />
+        <Button text="Load products" onPress={this.loadProduct} />
       </View>
     )
   }

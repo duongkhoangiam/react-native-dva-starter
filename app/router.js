@@ -99,7 +99,7 @@ function getActiveRouteName(navigationState) {
   return route.routeName
 }
 
-@connect(({ app, router }) => ({ app, router }))
+@connect(({loading, router}) => ({loading: loading.global, router}))
 class Router extends PureComponent {
   componentWillMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backHandle)
@@ -122,8 +122,8 @@ class Router extends PureComponent {
   }
 
   render() {
-    const { app, dispatch, router } = this.props
-    if (app.loading) return <Loading />
+    const { dispatch, router, loading } = this.props
+    if (loading) return <Loading />
 
     return <App dispatch={dispatch} state={router} />
   }
